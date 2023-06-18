@@ -11,8 +11,8 @@ router.get('/:id', CowController.getSingleCow);
 //update user to DB
 router.patch('/:id', CowController.updateCow);
 
-// //delete user From DB
-// router.delete('/:id', UserController.deleteUser);
+//delete user From DB
+router.delete('/:id', CowController.deleteCow);
 
 //collect call all cow data from DB
 router.get('/', CowController.getCowCollections);

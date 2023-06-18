@@ -1,13 +1,17 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const cors_1 = __importDefault(require("cors"));
-const express_1 = __importDefault(require("express"));
-const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
-const cow_route_1 = require("./app/modules/cow/cow.route");
-const user_route_1 = require("./app/modules/user/user.route");
+'use strict';
+var __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
+Object.defineProperty(exports, '__esModule', { value: true });
+const cors_1 = __importDefault(require('cors'));
+const express_1 = __importDefault(require('express'));
+const globalErrorHandler_1 = __importDefault(
+  require('./app/middlewares/globalErrorHandler')
+);
+const cow_route_1 = require('./app/modules/cow/cow.route');
+const user_route_1 = require('./app/modules/user/user.route');
 const app = (0, express_1.default)();
 //application middleware & parser
 app.use((0, cors_1.default)());
@@ -26,15 +30,15 @@ app.use('/api/v1/cows', cow_route_1.CowRoutes);
 app.use(globalErrorHandler_1.default);
 //not found route
 app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: 'Not Found',
-        errorMessages: [
-            {
-                path: req.originalUrl,
-                message: 'Api not found',
-            },
-        ],
-    });
+  res.status(404).json({
+    success: false,
+    message: 'Not Found',
+    errorMessages: [
+      {
+        path: req.originalUrl,
+        message: 'Api not found',
+      },
+    ],
+  });
 });
 exports.default = app;

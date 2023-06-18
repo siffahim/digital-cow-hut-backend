@@ -1,4 +1,5 @@
 import { Model, Types } from 'mongoose';
+import { IUser } from '../user/user.interface';
 
 export type location =
   | 'Dhaka'
@@ -32,7 +33,7 @@ export type ICow = {
   weight: number;
   label: CowLabel;
   category: Category;
-  seller: Types.ObjectId;
+  seller: Types.ObjectId | IUser;
 };
 
 export type CowModel = Model<ICow, Record<string, unknown>>;

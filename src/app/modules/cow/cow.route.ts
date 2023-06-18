@@ -5,16 +5,16 @@ const router = express.Router();
 //user create here
 router.post('/', CowController.createCowData);
 
-// //collect one user from DB
-// router.get('/:id', UserController.getSingleUser);
+//get single cow
+router.get('/:id', CowController.getSingleCow);
 
-// //update user to DB
-// router.patch('/:id', UserController.updateUser);
+//update user to DB
+router.patch('/:id', CowController.updateCow);
 
 // //delete user From DB
 // router.delete('/:id', UserController.deleteUser);
 
-// //collect all user from DB
-// router.get('/', UserController.getAllUsers);
+//collect call all cow data from DB
+router.get('/', CowController.getCowCollections);
 
 export const CowRoutes = router;

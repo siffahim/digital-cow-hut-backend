@@ -12,6 +12,8 @@ const createCowDataToDB = async (payload: ICow): Promise<ICow> => {
 
 type ICowFilters = {
   searchTerm?: string;
+  maxPrice?: string;
+  minPrice?: string;
 };
 
 const getCowCollectionsFromDB = async (
@@ -22,7 +24,7 @@ const getCowCollectionsFromDB = async (
     PaginationHelpers.calculatePagination(paginationOptions);
   const cowSearchFields = ['location', 'breed', 'category'];
 
-  const { searchTerm, ...filtersData } = filters;
+  const { searchTerm, maxPrice, minPrice, ...filtersData } = filters;
 
   const andConditions = [];
 
@@ -46,6 +48,16 @@ const getCowCollectionsFromDB = async (
     });
   }
 
+  const miPrice = Number(minPrice);
+  const maPrice = Number(maxPrice);
+
+  if (minPrice && maxPrice) {
+    andConditions.push({
+      price: { $gte: miPrice, $lte: maPrice },
+    });
+  }
+
+  //sorting.....
   const sortConditions: { [key: string]: SortOrder } = {};
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
@@ -53,6 +65,7 @@ const getCowCollectionsFromDB = async (
 
   const whereCondition =
     andConditions.length > 0 ? { $and: andConditions } : {};
+
   const result = await Cow.find(whereCondition)
     .populate('seller')
     .sort(sortConditions)

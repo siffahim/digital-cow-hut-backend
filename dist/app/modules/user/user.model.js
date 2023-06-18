@@ -1,43 +1,46 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.User = void 0;
-const mongoose_1 = require("mongoose");
-const userSchema = new mongoose_1.Schema({
+const mongoose_1 = require('mongoose');
+const userSchema = new mongoose_1.Schema(
+  {
     role: {
-        type: String,
-        required: true,
-        enum: ['seller', 'buyer'],
+      type: String,
+      required: true,
+      enum: ['seller', 'buyer'],
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     name: {
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: {
-            type: String,
-            required: true,
-        },
-    },
-    address: {
+      firstName: {
         type: String,
         required: true,
+      },
+      lastName: {
+        type: String,
+        required: true,
+      },
+    },
+    address: {
+      type: String,
+      required: true,
     },
     budget: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     income: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
-}, {
+  },
+  {
     timestamps: true,
     toJSON: {
-        virtuals: true,
+      virtuals: true,
     },
-});
+  }
+);
 exports.User = (0, mongoose_1.model)('User', userSchema);

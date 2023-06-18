@@ -20,5 +20,6 @@
 
 - api/v1/cows?page=1&limit=10
 - api/v1/cows?sortBy=price&sortOrder=asc
+- api/v1/cows?minPrice=20000&maxPrice=70000
 - api/v1/cows?location=Chattogram
 - api/v1/cows?searchTerm=Cha
